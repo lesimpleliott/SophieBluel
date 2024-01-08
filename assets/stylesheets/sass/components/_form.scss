@@ -1,0 +1,33 @@
+form {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    
+    label {
+        color: $text-color;
+        margin: 2em 0 1em 0;
+    }
+    input, 
+    select {
+        height: 50px;
+        border: none;
+        box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+        padding: 10px;
+    }
+    textarea {
+        border: none;
+        box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+        max-width: 100%;
+        min-height: 150px;
+        resize: vertical; 
+        padding: 10px;
+    }
+    input[type="submit"] {
+        @extend %buttonStyle;
+        width: 180px;
+        margin-top: 2em;
+        margin-bottom: 1em;
+        margin-inline: auto;
+    } 
+}
+

@@ -1,0 +1,141 @@
+.introduction {
+    width: 100%;
+    max-width: $maxWidth-main;
+
+    display: flex;
+    align-items: center;
+
+    figure {
+        flex: 1;
+    }
+
+    img {
+        display: block;
+        width: 80%;
+    }
+
+    article {
+        flex: 1;
+    }
+
+    p {
+        margin-bottom: 0.5em;
+        padding-inline-end: $safezone-padding-inline;
+    }
+}
+
+.portfolio {
+    width: 100%;
+    max-width: $maxWidth-main;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .portfolioTitle {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 2em;
+
+        h2 {
+            margin: 0;
+        }
+
+        .editButton {
+            all: unset;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+
+            &:hover {
+                color: $second-color;
+                p {
+                    color: $second-color;
+                }
+            }
+        }
+    }
+
+    #filters {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 2em;
+
+        .btnFilter {
+            @extend %buttonStyle;
+            background: transparent;
+            color: $main-color;
+            border: solid 1px $main-color;
+            border-radius: 60px;
+            user-select: none;
+            transition: all 200ms ease-in-out;
+
+            &:hover {
+                background: rgba($main-color, 0.3);
+            }
+
+            &.activeFilter {
+                background: $main-color;
+                color: #fff;
+            }
+        }
+    }
+
+    #gallery {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+
+        .workContainer {
+            transform-origin: top;
+            animation: revealWork 600ms ease-out both;
+
+            // // Si besoin, injecter le nombre d'element dynamiquement avec JS à la place de 10
+            // @for $i from 1 through 10 { 
+            //     &:nth-child(#{$i}) {
+            //         animation-delay: 100ms * $i;
+            //     }
+            // }
+
+            @keyframes revealWork {
+                from {
+                    // transform: scaleY(0);
+                    opacity: 0;
+                }
+                to {
+                    // transform: scaleY(1);
+                    opacity: 1;
+                }
+            }
+        }
+
+        img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+        }
+    }
+}
+
+.contact {
+    width: 50%;
+    text-align: center;
+
+    .unable {
+        background: grey;
+    }
+
+    .formContactError {
+        text-align: center;
+        color: rgb(200, 0, 0);
+    }
+}
