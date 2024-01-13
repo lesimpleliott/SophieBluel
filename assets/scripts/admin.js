@@ -1,16 +1,5 @@
 // ******************************************************************************
-// ***************************** NOTES PERSO  ******************************
-// ******************************************************************************
-/* {
-    - Supprimer les addEventListener de la modal lors de la fermeture de la modale et ou de la session admin 
-    - creer 2 fonctions pour la creation des modales par injection SI token
-    fonction à jouer dans displayAdmin ???? 
-    ------->>>>>> P**** de refresh lors du fetch postWorks et fetch deleteWorks
-} */
-
-// ******************************************************************************
 // ***************************** FONCTION INDEX ******************************
-// ******************************************************************************
 
 const fetchWorks = async () => {
     try {
@@ -37,7 +26,7 @@ const displayWorks = (arrayWorks) => {
     // console.log(arrayWorks);
 
     // Suppression des éléments présents dans la Galerie
-    gallery.innerHTML = ""
+    gallery.innerHTML = "";
 
     // Création des travaux et ajout au DOM
     arrayWorks.forEach((work) => {
@@ -83,14 +72,14 @@ const filtersWorks = (arrayCategories, arrayWorks) => {
     // on filtre et on affiche les 'works'
     filterButtons.forEach((btn) => {
         btn.addEventListener("click", (e) => {
-            const selectBtn = e.target; 
+            const selectBtn = e.target;
             const selectID = parseInt(btn.id);
-            
-            // affichage du filtre selectionné 
-            filterButtons.forEach(btn => {
-                btn.classList.remove('activeFilter')
-                selectBtn.classList.add('activeFilter')                
-            })
+
+            // affichage du filtre selectionné
+            filterButtons.forEach((btn) => {
+                btn.classList.remove("activeFilter");
+                selectBtn.classList.add("activeFilter");
+            });
 
             if (selectID === 0) {
                 displayWorks(arrayWorks);
@@ -136,7 +125,7 @@ const displayAdminIndex = () => {
         // affiche le bouton "modifier"
         openModalBtn.style.display = "none";
 
-        // Masquage filters Buttons
+        // Masque les filters Buttons
         filters.style.display = "";
     });
 };
@@ -196,11 +185,10 @@ const submitMessageContact = () => {
 
 // ******************************************************************************
 // ***************************** FONCTION MODALE ******************************
-// ******************************************************************************
 
 //////////////////////////////// DISPLAY MODAL ////////////////////////////////
 const displayModal = () => {
-    const openModalBtn = document.querySelector("#openModalBtn"); // modifier
+    const openModalBtn = document.querySelector("#openModalBtn"); // bouton 'modifier'
     const closeBtn = document.querySelector("#closeBtn");
     const addWorksBtn = document.querySelector("#addWorksBtn"); // ajouter photo
 
@@ -252,8 +240,7 @@ const showModalGallery = async () => {
     thumbnailsContainer.innerHTML = "";
 
     // on ajoute les travaux
-
-    const dataWorks = await fetchWorks(); ///////////////////////////////////////////////////////////////////////////// WTF
+    const dataWorks = await fetchWorks();
     dataWorks.forEach((work) => {
         const thumbnail = document.createElement("div");
         thumbnail.classList.add("thumbnail");
@@ -293,9 +280,7 @@ const showModalAddWork = async () => {
     // recupere les categories distantes et les affiches
     const dataCategories = await fetchCategories();
 
-    while (formCategory.firstChild) {
-        formCategory.firstChild.remove();
-    }
+    formCategory.innerHTML = "";
     const defaultOption = document.createElement("option");
     defaultOption.setAttribute("value", "0");
     defaultOption.setAttribute("disabled", true);
@@ -311,7 +296,6 @@ const showModalAddWork = async () => {
     });
 
     // initialise le formulaire
-    // imgSrc = null;
     formTitle.value = "";
     formCategory.value = "0";
     previewImg.src = "";
@@ -335,7 +319,7 @@ const closeModal = async () => {
     modal.removeAttribute("aria-modal");
 
     const newDataWork = await fetchWorks();
-    displayWorks(newDataWork); ///////////////////////////////////////////////////////////////////////////// WTF
+    displayWorks(newDataWork);
 };
 
 ///////////////////////////// ADD / DELETE WORK /////////////////////////////
@@ -424,12 +408,11 @@ const deleteWork = async (token) => {
         e.preventDefault();
         if (e.target.classList.contains("deleteWorkBtn")) {
             const idToDelete = parseInt(e.target.dataset.id);
-            console.log("test 3");
+
             fetchDeleteWork(token, idToDelete);
 
             const newDataWork = await fetchWorks;
             showModalGallery(newDataWork);
-            // displayWorks(newDataWork)///////////////////////////////////////////////////////////////////////////// WTF
         }
     });
 };
@@ -450,7 +433,7 @@ const fetchPostWork = async (token, formData) => {
 };
 
 const fetchDeleteWork = async (token, id, e) => {
-    console.log("test 1");
+    // e.preventDefault();
     try {
         const res = await fetch(`http://localhost:5678/api/works/${id}`, {
             method: "DELETE",
@@ -459,19 +442,13 @@ const fetchDeleteWork = async (token, id, e) => {
                 Authorization: `Bearer ${token}`,
             },
         });
-        if (res.ok) {
-            console.log("ok");
-        }
-        console.log("test 2");
     } catch (error) {
         console.error("Erreur lors de la requête fetch :", error);
     }
-    e.preventDefault();
 };
 
 // ******************************************************************************
 // ******************************** INIT ********************************
-// ******************************************************************************
 const init = async () => {
     // recupère les datas WORKS et CATEGORIES distants
     const dataCategories = await fetchCategories();

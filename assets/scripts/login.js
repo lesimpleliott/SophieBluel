@@ -1,19 +1,15 @@
 // ******************************************************************************
 // ****************************** VARIABLES ******************************
 // ******************************************************************************
-const loginForm = document.getElementById("loginForm");
 const inputMail = document.getElementById("email");
 const inputPwd = document.getElementById("password");
 const submitLogin = document.getElementById("submitLogin");
 const displayError = document.getElementById("displayError");
-const regMail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+");
-
 let fetchResponse;
 let dataToken;
 
 // ******************************************************************************
 // ****************************** FONCTIONS ******************************
-// ******************************************************************************
 const fetchLogin = async (login) => {
     fetchResponse = await fetch("http://localhost:5678/api/users/login", {
         method: "POST",
@@ -24,21 +20,23 @@ const fetchLogin = async (login) => {
 };
 
 const checkInputLogin = () => {
+    const regMail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+");
+
     if (regMail.test(inputMail.value) && inputPwd.value !== "") {
-        submitLogin.classList.remove('unable')
+        submitLogin.classList.remove("unable");
         displayError.textContent = "";
     } else {
-        submitLogin.classList.add('unable')
+        submitLogin.classList.add("unable");
     }
 };
 
-inputMail.addEventListener('input', checkInputLogin)
-inputPwd.addEventListener('input', checkInputLogin)
-
+inputMail.addEventListener("input", checkInputLogin);
+inputPwd.addEventListener("input", checkInputLogin);
 
 // ******************************************************************************
 // ****************************** EVENEMENTS ******************************
-// ******************************************************************************
+const loginForm = document.getElementById("loginForm");
+
 loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -50,16 +48,16 @@ loginForm.addEventListener("submit", async (event) => {
     await fetchLogin(login);
 
     if (fetchResponse.ok) {
-        // ---> recupère le token => sessionStorage
+        // recupère le token => sessionStorage
         window.sessionStorage.setItem("token", dataToken.token);
-        // ---> rediection vers page index.html
+        // rediection vers page index.html
         window.location.href = "index.html";
     } else {
-        // ---> Animation sur le bouton submit
+        // Animation sur le bouton submit
         submitLogin.classList.add("loginError");
         setTimeout(() => submitLogin.classList.remove("loginError"), 300);
-        // ---> Ajout du texte d'erreur
+        // Ajout du texte d'erreur
         displayError.textContent = "E-mail et/ou Mot de passe incorrect(s)";
-        inputPwd.value = ""; 
+        inputPwd.value = "";
     }
 });
