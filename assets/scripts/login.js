@@ -22,9 +22,10 @@ const fetchLogin = async (login) => {
 const checkInputLogin = () => {
     const regMail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+");
 
+    displayError.textContent = "";
+
     if (regMail.test(inputMail.value) && inputPwd.value !== "") {
         submitLogin.classList.remove("unable");
-        displayError.textContent = "";
     } else {
         submitLogin.classList.add("unable");
     }

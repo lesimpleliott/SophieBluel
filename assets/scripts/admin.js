@@ -302,6 +302,7 @@ const showModalAddWork = async () => {
     addImgContainer.style.display = "";
     previewImg.style.display = "none";
     submitWorks.classList.add("unable");
+    fileInput.value = ""
 
     // affiche modale Gallery (retour)
     prevBtn.addEventListener("click", showModalGallery);
@@ -457,6 +458,7 @@ const init = async () => {
     // affiche les traveaux et filtres sur l'index
     displayWorks(dataWorks);
     filtersWorks(dataCategories, dataWorks);
+    
     // Formulaire
     nameContact.addEventListener("input", checkInputContact);
     emailContact.addEventListener("input", checkInputContact);
