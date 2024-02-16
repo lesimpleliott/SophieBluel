@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/iconS.svg">
+    <link rel="stylesheet" href="./assets/stylesheets/style.css">
+    <script src="./assets/scripts/admin.js" defer></script>
+</head>
+
+<body> 
+    <header>
+        <h1 class="logoHeader">Sophie Bluel <span>Architecte d'intérieur</span></h1>
+        <nav>
+            <ul class="navBar">
+                <li><a class="navBar__link" href="#portfolio">projets</a></li>
+                <li><a class="navBar__link" href="#contact">contact</a></li>
+                <li><a class="navBar__link" href="./login.html" id="logBtn">login</a></li>
+                <li><a class="navBar__link" href="#">
+                    <img class="navBar__icon" src="./assets/icons/instagram.png" alt="Instagram">
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <figure>
+                <img src="./assets/images/sophie-bluel.png" alt="">
+            </figure>
+            <article>
+                <h2>Designer d'espace</h2>
+                <p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
+                <p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+                <p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+            </article>
+        </section>
+
+        <section class="portfolio" id="portfolio">
+            <div class="portfolioTitle">
+                <h2>Mes Projets</h2>
+                <a href="#modal" class="editButton" id="openModalBtn" style="display: none;">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                    <p>Modifier</p>
+                </a>
+            </div>
+  
+            <div id="filters">
+                <!-- JS INJECTED -->
+            </div>
+                
+            <div id="gallery">
+                <!-- JS INJECTED -->
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <h2>Contact</h2>
+            <p>Vous avez un projet ? Discutons-en !</p>
+            <form action="#" method="post" id="formContact">
+                <label for="nameContact">Nom</label>
+                <input type="text" name="name" id="nameContact">
+
+                <label for="emailContact">Email</label>
+                <input type="email" name="email" id="emailContact">
+
+                <label for="messageContact">Message</label>
+                <textarea name="message" id="messageContact" cols="30" rows="10"></textarea>
+
+                <input type="submit" value="Envoyer" id="sumbmitBtn" class="unable">
+                <p class="formContactError"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <ul>
+            <li><a href="#">Mentions Légales</a></li>
+        </ul>
+    </footer>
+
+<!-- ***************************** ADMIN ***************************** -->
+    <div id="editBanner" class="editBanner" style="display: none">
+        <i class="fa-regular fa-pen-to-square icon"></i>
+        <p class="text">Mode édition</p>
+    </div>
+
+    <aside id="modal" class="modal" aria-hidden="true" style="display: none">
+        <div class="modalWrapper">
+            <!-- MODAL HEADER // FIXE -->
+            <div class="modalWrapper__header">
+                <div class="modalWrapper__header__navbar">
+                    <i id="prevBtn" class="fa-solid"></i> 
+                    <i id="closeBtn" class="fa-solid fa-xmark"></i>
+                </div>
+                <h3 id="modalTitle" class="modalWrapper__header__title">Title</h3>
+            </div>
+
+            <!-- MODAL GALLERY -->
+            <div class="modalWrapper__content" id="modalGallery" style="display: none;">
+                <div class="thumbnails">
+                    <!-- JS INJECTED -->
+                </div>
+                <div class="btnContainer">
+                    <button id="addWorksBtn">Ajouter une photo</button>
+                </div>
+            </div>
+            
+            
+            <!-- MODAL ADDWORKS -->
+            <div class="modalWrapper__content" id="modalAddWork" style="display: none;">
+                <form class="addWorksForm" id="addWorksForm">
+                    <div class="imgContainer">
+                        <div class="imgContainer__add" id="addImgContainer">
+                            <i class="fa-regular fa-image imgContainer__add__icon"></i>
+                            <label class="imgContainer__add__button" for="fileInput" id="fileSrcBtn">+ Ajouter photo</label>
+                            <input type="file" name="file" id="fileInput" accept=".jpg, .png" style="display: none;">
+                            <p class="imgContainer__add__text">jpg, png : 4mo max</p>
+                        </div>
+                        <img src="" alt="" class="previewImg" style="display:none">
+                    </div>
+                
+                    <div class="inputContainer">
+                        <label for="formTitle">Titre</label>
+                        <input type="text" name="title" id="formTitle">
+                        
+                        <label for="formCategory">Catégorie</label>
+                        <select id="formCategory" name="category">
+                        </select>
+                    </div>
+
+                    <input type="submit" class="submitWorks unable" value="Valider">
+                    <p class="displayError"></p>
+                </form>
+            </div>
+        </div>
+    </aside>
+
+</body>
+
+</html>

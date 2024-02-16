@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sophie Bluel - Login</title>
+        <link rel="icon" type="image/svg+xml" href="./assets/icons/iconS.svg">
+        <link rel="stylesheet" href="./assets/stylesheets/style.css">
+        <script src="./assets/scripts/login.js" defer></script>
+    </head>
+
+    <body> 
+        <header>
+            <h1 class="logoHeader">Sophie Bluel <span>Architecte d'intérieur</span></h1>
+            <nav>
+                <ul class="navBar">
+                    <li><a class="navBar__link" href="./index.html#portfolio">projets</a></li>
+                    <li><a class="navBar__link" href="./index.html#contact">contact</a></li>
+                    <li><a class="navBar__link" href="./login.html" id="logLink">login</a></li>
+                    <li><a class="navBar__link" href="#">
+                        <img class="navBar__icon" src="./assets/icons/instagram.png" alt="Instagram">
+                    </a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="login">
+                <h2>Log In</h2>
+                <form id="loginForm">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" id="email">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" name="password" id="password">
+                    <input type="submit" id="submitLogin" value="Se connecter" class="unable">
+                    <p id="displayError" class="displayError"></p>
+                    <a href="#" class="forgetPassword">Mot de passe oublié</a>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <ul>
+                <li><a href="#">Mentions Légales</a></li>
+            </ul>
+        </footer>
+    </body>
+
+</html>
